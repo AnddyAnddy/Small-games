@@ -2,13 +2,22 @@ import sys
 
 from src.tictactoe.game_mechanic.game import Game
 from src.tictactoe.game_mechanic.motif import Motif
+from src.tictactoe.user_interface.lib import upemtk
 from src.tictactoe.user_interface.ui_all_combination import AllMoves
 from src.tictactoe.user_interface.ui_debug import Debug
+from src.tictactoe.user_interface.ui_graphic import Graphic
 from src.tictactoe.user_interface.ui_terminal import Terminal
 
 
 def terminal():
     Game(Terminal).main_loop()
+
+
+def graphic():
+    window_size = 650
+    upemtk.cree_fenetre(window_size, window_size)
+    Game(Graphic, window_size=window_size).main_loop()
+    upemtk.ferme_fenetre()
 
 
 def debug():
@@ -42,5 +51,7 @@ if __name__ == '__main__':
             debug()
         case "stats":
             stats()
+        case "graphic":
+            graphic()
         case _:
             print("You didn't seize a valid mode, it must be: terminal, debug or stats")
