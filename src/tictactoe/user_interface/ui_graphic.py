@@ -62,7 +62,6 @@ class HandleDrawing:
         )
 
     def get_index(self, x: int, y: int) -> tuple[int, int]:
-        # (100, 250), (250, 400), (400, 550)
         index_x = (x - self.start_background) // self.case_size
         index_y = (y - self.start_background) // self.case_size
         # x and y are reversed compared to a python matrix, so we revert it
