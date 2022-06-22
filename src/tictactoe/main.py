@@ -18,7 +18,7 @@ def debug():
 
 def stats():
     winner_count = {Motif.CROSS: 0, Motif.CIRCLE: 0, Motif.BLANK: 0}
-    for i in range(len(AllMoves.ALL_MOVES) // 5):
+    for i in range(len(AllMoves.ALL_MOVES)):
         game = Game(AllMoves, test_index=i)
         winner = game.main_loop()
         winner_count[winner] += 1
