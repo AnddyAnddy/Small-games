@@ -9,7 +9,8 @@ Bunch of small games (TicTacToe, Snakes...) coded in python
 
 # Arguments
 ## Tic Tac Toe
-* You can select a mode using `terminal`, `stats` and `debug`
+* You can select a mode using `terminal`, `stats`, `graphic` and `debug`
 * Terminal will start a game where the players will have to write where they want to play (row and column)
+* Graphic will start a game where players have to click to where they want to play
 * Stats will play all the possibles permutations of the game (9!) and describe the winner's stats
 * Debug will play basic combinations where all the 8 winning alignements to win are shown
