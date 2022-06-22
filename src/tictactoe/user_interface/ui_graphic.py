@@ -14,6 +14,7 @@ class HandleDrawing:
         self.draw_grid()
 
     def draw_grid(self):
+        """Draw a centered 3 * 3 grid based on the window_size."""
         upemtk.rectangle(self.start_background, self.start_background, self.end_background, self.end_background,
                          epaisseur=5, tag="background_grid")
         # Vertical
@@ -31,7 +32,10 @@ class HandleDrawing:
                      tag="background_grid")
 
     def draw_cross(self, i: int, j: int):
+        """Draw a red cross with 2 diagonal lines in a case."""
+        # It is ugly when the cross overrides the grid, therefore, we add a little padding
         padding = self.case_size // 25
+        # top left to bottom right
         upemtk.ligne(
             j * self.case_size + self.start_background + padding,
             i * self.case_size + self.start_background + padding,
@@ -41,6 +45,7 @@ class HandleDrawing:
             tag="cross",
             couleur="red"
         )
+        # top right to bottom left
         upemtk.ligne(
             (j + 1) * self.case_size + self.start_background - padding,
             i * self.case_size + self.start_background + padding,
@@ -52,6 +57,7 @@ class HandleDrawing:
         )
 
     def draw_circle(self, i: int, j: int):
+        """Draw a centered blue circle representing the O motif in a case."""
         upemtk.cercle(
             j * self.case_size + self.start_background + self.case_size // 2,
             i * self.case_size + self.start_background + self.case_size // 2,
@@ -62,20 +68,24 @@ class HandleDrawing:
         )
 
     def get_index(self, x: int, y: int) -> tuple[int, int]:
+        """Transform the x and y coordinates into board readable indexes."""
         index_x = (x - self.start_background) // self.case_size
         index_y = (y - self.start_background) // self.case_size
         # x and y are reversed compared to a python matrix, so we revert it
         return index_y, index_x
 
     def text_winner(self, winner):
+        """Draw the winner text at the bottom of the grid."""
         upemtk.texte(self.start_background, self.end_background + self.start_background // 3,
                      f"The winner of the game is {winner} !", tag="winner_text", couleur="grey")
 
     def text_draw(self):
+        """Draw the draw text at the bottom of the grid."""
         upemtk.texte(self.start_background, self.end_background + self.start_background // 3,
                      f"The game ended in a draw.", tag="winner_text", couleur="grey")
 
     def text_turn(self, player: Motif):
+        """Draw the text indicating whose turn it is at the top of the grid."""
         upemtk.efface("text_turn")
         color = "red" if player == Motif.CROSS else "blue"
         upemtk.texte(self.start_background, self.start_background // 2,
@@ -84,10 +94,12 @@ class HandleDrawing:
 
 class Graphic(UI):
     def __init__(self, board: Board, *args, **kwargs):
+        """The background will be drawn during the init method."""
         super().__init__(board)
         self.drawer = HandleDrawing(board.size, *args, **kwargs)
 
     def display(self):
+        """Use the upemtk lib to draw motifs played"""
         for i in range(self.board.size):
             for j in range(self.board.size):
                 motif = self.board.board[i][j]
@@ -98,12 +110,14 @@ class Graphic(UI):
         upemtk.mise_a_jour()
 
     def display_winner(self, winner: Motif):
+        """Display the winner at the bottom of the grid and wait for an event to finish."""
         self.display()
         self.drawer.text_winner(winner)
         upemtk.mise_a_jour()
         upemtk.attend_ev()
 
     def display_draw(self):
+        """Display that the game ended in a draw at the bottom of the grid and wait for an event to finish."""
         self.display()
         self.drawer.text_draw()
         upemtk.mise_a_jour()
