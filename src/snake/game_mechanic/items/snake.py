@@ -46,6 +46,10 @@ class Snake(Item):
                     self._grow()
                 case ItemType.WALL:
                     self._is_dead = True
+                case ItemType.SPIDER:
+                    self._grow()
+                    self._grow()
+                    self._grow()
 
     def is_dead(self) -> bool:
         return self._is_dead
