@@ -3,10 +3,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Iterable
 
 from src.snake.game_mechanic.coordinates import Coordinates, Position
+from src.snake.game_mechanic.creator.apple_creator import AppleCreator
+from src.snake.game_mechanic.creator.wall_creator import WallCreator
 from src.snake.game_mechanic.items.abc_item import Item
+from src.snake.game_mechanic.items.item_type import ItemType
 from src.snake.game_mechanic.playable import Playable
 
 if TYPE_CHECKING:
+    from src.snake.game_mechanic.creator.creatable import Creatable
     from src.snake.game_mechanic.game import Game
 
 
@@ -17,6 +21,7 @@ class Board:
         self.items: set[Item] = set()
         self.player: Playable | None = None
         self.all_positions = {Position(x, y) for x in range(self.size) for y in range(self.size)}
+        self.creatorFactory: dict[ItemType, Creatable] = {ItemType.APPLE: AppleCreator(), ItemType.WALL: WallCreator()}
 
     def _check_collisions(self, game: Game):
         items_in_collisions = group_by_position(self.items)
@@ -49,6 +54,10 @@ class Board:
             item_pos = item.taken_position()
             taken_pos.update(item_pos)
         return list(self.all_positions - taken_pos)
+
+    def create(self, item_type: ItemType, **kwargs):
+        item: Item = self.creatorFactory[item_type].create(available_positions=self.available_positions(), **kwargs)
+        self.add(item)
 
 
 def group_by_position(items: Iterable[Item]) -> dict[Coordinates, list[Item]]:
