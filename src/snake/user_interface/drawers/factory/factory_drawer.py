@@ -20,3 +20,8 @@ class DrawerFactory(ABC):
     @abstractmethod
     def snake_drawer(self, game: Game):
         ...
+
+    @abstractmethod
+    def spider_drawer(self, game: Game):
+        ...
+
