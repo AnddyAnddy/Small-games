@@ -99,7 +99,7 @@ class Graphic(UI):
         self.drawer = HandleDrawing(board.size, *args, **kwargs)
 
     def display(self):
-        """Use the upemtk lib to draw motifs played"""
+        """Use the upemtk libs to draw motifs played"""
         for i in range(self.board.size):
             for j in range(self.board.size):
                 motif = self.board.board[i][j]
