@@ -30,14 +30,6 @@ class Apple(Item):
         game.remove(self)
         game.board.add(self.create(available_positions=game.board.available_positions()))
 
-    @staticmethod
-    def create(position: Position | None = None, available_positions: list[Coordinates] = None) -> Apple:
-        if not position:
-            position = random.choice(available_positions)
-        Apple.count += 1
-        return Apple(position, f"apple_{Apple.count}")
-
-
 def get_random_free_position_fast(range_x: range, range_y: range, excluded_pos: set[Position]) -> Position | None:
     x_forward, x_backward = 0, 0
     while True:
