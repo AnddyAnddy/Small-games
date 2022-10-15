@@ -27,14 +27,4 @@ class Wall(Item):
 
     def interact_with(self, game: Game, items: Iterable[Item]):
         print(f"Something hit {self.tag}")
-        # game.remove(self)
-        # game.board.add(self.create())
 
-    @staticmethod
-    def create(position: Position | None = None) -> Wall:
-        if not position:
-            x = randrange(1, 15)
-            y = randrange(1, 15)
-            position = Position(x, y)
-        Wall.count += 1
-        return Wall(position, f"wall_{Wall.count}")
