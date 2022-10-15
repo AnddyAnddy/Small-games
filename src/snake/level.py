@@ -1,6 +1,7 @@
 from src.snake.game_mechanic.coordinates import Position, Direction
 from src.snake.game_mechanic.game import Game
 from src.snake.game_mechanic.items.apple import Apple
+from src.snake.game_mechanic.items.item_type import ItemType
 from src.snake.game_mechanic.items.snake import Snake
 from src.snake.game_mechanic.items.wall import Wall
 from src.snake.user_interface.drawers.factory.factory_drawer import DrawerFactory
@@ -15,7 +16,7 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                 char: str
                 match char.upper():
                     case 'W':
-                        game.board.add(Wall.create(Position(i, j)))
+                        game.board.create(ItemType.WALL, forced_position=Position(i, j))
                         to_draw.add('W')
                     case 'S':
                         snake = Snake(Position(i, j), Direction.RIGHT)
@@ -23,7 +24,8 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                         game.board.add(snake)
                         to_draw.add('S')
                     case 'A':
-                        game.board.add(Apple.create(Position(i, j)))
+                        game.board.create(ItemType.APPLE, forced_position=Position(i, j))
+                        # game.board.add(Apple.create(Position(i, j)))
                         to_draw.add('A')
 
         for elem in to_draw:
