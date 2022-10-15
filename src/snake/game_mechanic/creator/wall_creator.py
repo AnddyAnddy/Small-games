@@ -3,7 +3,7 @@ from src.snake.game_mechanic.coordinates import Position, Coordinates
 from src.snake.game_mechanic.items.wall import Wall
 
 
-class WallCreator:
+class WallFactory:
     def __init__(self):
         self.count = 0
 

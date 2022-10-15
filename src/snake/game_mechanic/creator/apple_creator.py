@@ -4,7 +4,7 @@ from src.snake.game_mechanic.coordinates import Position, Coordinates
 from src.snake.game_mechanic.items.apple import Apple
 
 
-class AppleCreator:
+class AppleFactory:
     def __init__(self):
         self.count = 0
 
