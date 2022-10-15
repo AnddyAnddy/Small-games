@@ -3,14 +3,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Iterable
 
 from src.snake.game_mechanic.coordinates import Coordinates, Position
-from src.snake.game_mechanic.creator.apple_creator import AppleFactory
-from src.snake.game_mechanic.creator.wall_creator import WallFactory
+from src.snake.game_mechanic.factory.apple_factory import AppleFactory
+from src.snake.game_mechanic.factory.wall_factory import WallFactory
 from src.snake.game_mechanic.items.abc_item import Item
 from src.snake.game_mechanic.items.item_type import ItemType
 from src.snake.game_mechanic.playable import Playable
 
 if TYPE_CHECKING:
-    from src.snake.game_mechanic.creator.creatable import Creatable
+    from src.snake.game_mechanic.factory.creatable import Creatable
     from src.snake.game_mechanic.game import Game
 
 
