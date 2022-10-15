@@ -1,9 +1,14 @@
-from abc import ABC, abstractmethod
+from __future__ import annotations
 
-from src.snake.game_mechanic.board import Board
-from src.snake.game_mechanic.items.abc_item import Item
-from src.snake.game_mechanic.playable import Playable
+from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
+
 from src.snake.user_interface.drawers.drawers import Drawers
+
+if TYPE_CHECKING:
+    from src.snake.game_mechanic.board import Board
+    from src.snake.game_mechanic.items.abc_item import Item
+    from src.snake.game_mechanic.playable import Playable
 
 
 class UI(ABC):
