@@ -27,6 +27,9 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                         game.board.create(ItemType.APPLE, forced_position=Position(i, j))
                         # game.board.add(Apple.create(Position(i, j)))
                         to_draw.add('A')
+                    case 'B':
+                        game.board.create(ItemType.SPIDER, forced_position=Position(i, j))
+                        to_draw.add('B')
 
         for elem in to_draw:
             match elem:
@@ -36,3 +39,5 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                     drawer_factory.snake_drawer(game)
                 case 'A':
                     drawer_factory.apple_drawer(game)
+                case 'B':
+                    drawer_factory.spider_drawer(game)
