@@ -28,8 +28,6 @@ class Apple(Item):
 
     def interact_with(self, game: Game, items: Iterable[Item]):
         game.remove(self)
-        game.board.add(self.create(available_positions=game.board.available_positions()))
-
 def get_random_free_position_fast(range_x: range, range_y: range, excluded_pos: set[Position]) -> Position | None:
     x_forward, x_backward = 0, 0
     while True:
@@ -56,3 +54,4 @@ def get_random_free_position_fast(range_x: range, range_y: range, excluded_pos: 
             pos_forward_y = Position(x, y + y_forward)
             if pos_forward_y not in excluded_pos:
                 return pos_forward_y
+        game.board.create(self.item_type)
