@@ -1,11 +1,9 @@
 from __future__ import annotations
 
-import random
-from random import randrange
 from typing import Iterable
 from typing import TYPE_CHECKING
 
-from src.snake.game_mechanic.coordinates import Position, Direction, Coordinates
+from src.snake.game_mechanic.coordinates import Position, Direction
 from src.snake.game_mechanic.items.abc_item import Item
 from src.snake.game_mechanic.items.item_type import ItemType
 from src.snake.user_interface.ui.ui_abstract import UI
