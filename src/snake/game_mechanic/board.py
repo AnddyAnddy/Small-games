@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Iterable
 
 from src.snake.game_mechanic.coordinates import Coordinates, Position
 from src.snake.game_mechanic.factory.apple_factory import AppleFactory
+from src.snake.game_mechanic.factory.spider_factory import SpiderFactory
 from src.snake.game_mechanic.factory.wall_factory import WallFactory
 from src.snake.game_mechanic.items.abc_item import Item
 from src.snake.game_mechanic.items.item_type import ItemType
@@ -21,7 +22,8 @@ class Board:
         self.items: set[Item] = set()
         self.player: Playable | None = None
         self.all_positions = {Position(x, y) for x in range(self.size) for y in range(self.size)}
-        self.creatorFactory: dict[ItemType, Creatable] = {ItemType.APPLE: AppleFactory(), ItemType.WALL: WallFactory()}
+        self.creatorFactory: dict[ItemType, Creatable] = {ItemType.APPLE: AppleFactory(), ItemType.WALL: WallFactory(),
+                                                          ItemType.SPIDER: SpiderFactory()}
 
     def _check_collisions(self, game: Game):
         items_in_collisions = group_by_position(self.items)
