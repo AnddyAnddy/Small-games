@@ -32,7 +32,8 @@ class Board:
 
     def update(self, game):
         self._check_collisions(game)
-        for item in self.items:
+        _items = self.items.copy()  # an item may be removed from the items during its update
+        for item in _items:
             item.update(game, self.items)
 
     def draw(self, ui):
