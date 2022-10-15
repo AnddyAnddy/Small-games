@@ -23,7 +23,7 @@ class Spider(Item):
 
     def update(self, game: Game, items: Iterable[Item]):
         current_time = time.time()
-        if self.time_created + self.seconds_alive > current_time:
+        if self.time_created + self.seconds_alive < current_time:
             game.remove(self)
 
     def draw(self, ui: UI):
