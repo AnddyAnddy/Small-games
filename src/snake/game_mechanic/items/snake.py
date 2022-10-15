@@ -30,6 +30,7 @@ class Snake(Item):
             self._is_dead = True
 
     def _grow(self):
+        # TODO: issue when successive call during one frame
         self.body.append(self.body[-1])
 
     def update(self, game: Game, items: Iterable[Item]):
