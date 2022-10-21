@@ -16,8 +16,8 @@ class Snake(Item):
 
     def __init__(self, head: Coordinates, direction: Coordinates):
         super().__init__(head, direction, "snake", ItemType.SNAKE)
-        self.body = [head - n * direction for n in range(4)]
-        self._is_dead = False
+        self.body: list[Coordinates] = [head - n * direction for n in range(4)]
+        self._is_dead: bool = False
 
     def move(self):
         head = self.body[0]
