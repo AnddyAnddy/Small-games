@@ -13,11 +13,13 @@ if TYPE_CHECKING:
 
 class Item(ABC):
 
-    def __init__(self, position: Coordinates, direction: Coordinates, tag: str, item_type: ItemType):
+    def __init__(self, position: Coordinates, direction: Coordinates, tag: str, item_type: ItemType,
+                 refresh_rate: int = 1):
         self.position = position
         self.direction = direction
         self.tag = tag
         self.item_type = item_type
+        self.refresh_rate = refresh_rate
 
     @abstractmethod
     def update(self, game: Game, items: Iterable['Item']):

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class Snake(Item):
 
     def __init__(self, head: Coordinates, direction: Coordinates):
-        super().__init__(head, direction, "snake", ItemType.SNAKE)
+        super().__init__(head, direction, "snake", ItemType.SNAKE, refresh_rate=7)
         self.body: list[Coordinates] = [head - n * direction for n in range(4)]
         self._is_dead: bool = False
 

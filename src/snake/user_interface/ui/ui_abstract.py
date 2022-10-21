@@ -3,6 +3,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
+from src.snake.game_mechanic.TickHandler import TickHandler
 from src.snake.user_interface.drawers.drawers import Drawers
 
 if TYPE_CHECKING:
@@ -16,6 +17,7 @@ class UI(ABC):
     def __init__(self, board: Board):
         self.board = board
         self.drawers = Drawers()
+        self._tick: TickHandler = TickHandler()
 
     @abstractmethod
     def display(self):
@@ -36,3 +38,7 @@ class UI(ABC):
     @abstractmethod
     def refresh(self):
         ...
+
+    @property
+    def ticks(self):
+        return self._tick.ticks

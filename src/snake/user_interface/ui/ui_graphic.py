@@ -56,5 +56,4 @@ class Graphical(UI):
 
     def refresh(self):
         sleep(0.2)
-        # upemtk.attend_ev()
-        pass
+        self._tick.increase()
