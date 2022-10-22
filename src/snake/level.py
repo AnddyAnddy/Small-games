@@ -2,7 +2,7 @@ from src.snake.game_mechanic.coordinates import Position, Direction
 from src.snake.game_mechanic.game import Game
 from src.snake.game_mechanic.items.apple import Apple
 from src.snake.game_mechanic.items.item_type import ItemType
-from src.snake.game_mechanic.items.snake import Snake
+from src.snake.game_mechanic.items.snake import Snake, InfiniteSnake
 from src.snake.game_mechanic.items.wall import Wall
 from src.snake.user_interface.drawers.factory.factory_drawer import DrawerFactory
 
@@ -31,6 +31,12 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                         game.board.create(ItemType.SPIDER, forced_position=Position(i, j))
                         to_draw.add('B')
 
+                    case 'I':
+                        infinite_snake = InfiniteSnake(Position(i, j), Direction.RIGHT)
+                        game.board.add_player(infinite_snake)
+                        game.board.add(infinite_snake)
+                        to_draw.add('I')
+
         for elem in to_draw:
             match elem:
                 case 'W':
@@ -41,3 +47,5 @@ def load_level(game: Game, drawer_factory: DrawerFactory, level_path: str):
                     drawer_factory.apple_drawer(game)
                 case 'B':
                     drawer_factory.spider_drawer(game)
+                case 'I':
+                    drawer_factory.infinite_snake_drawer(game)
