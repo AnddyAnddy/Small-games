@@ -62,3 +62,16 @@ class Snake(Item):
 
     def __str__(self):
         return " - ".join(str(e) for e in self.body)
+
+
+class InfiniteSnake(Snake):
+    def __init__(self, head: Coordinates, direction: Coordinates):
+        super().__init__(head, direction, tag="infinite snake")
+
+    def move(self):
+        head = self.body[0]
+        self.position = head + self.direction
+        self.body.insert(0, self.position)
+
+    def _grow(self):
+        pass
