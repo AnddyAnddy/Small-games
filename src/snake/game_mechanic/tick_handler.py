@@ -2,7 +2,7 @@ from typing import Callable
 
 
 class TickHandler:
-    instance = None
+    instance: 'TickHandler' = None
 
     def __init__(self):
         self.ticks = 0
