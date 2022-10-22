@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 from src.snake.game_mechanic.coordinates import Position, Direction
 from src.snake.game_mechanic.items.abc_item import Item
 from src.snake.game_mechanic.items.item_type import ItemType
+from src.snake.game_mechanic.tick_handler import TickHandler
 from src.snake.user_interface.ui.ui_abstract import UI
 
 if TYPE_CHECKING:
@@ -16,14 +17,15 @@ if TYPE_CHECKING:
 class Spider(Item):
     count = 0
 
-    def __init__(self, position: Position, tag: str, seconds_alive: float = 5):
+    def __init__(self, position: Position, tag: str, ticks_alive: int = 30):
         super().__init__(position, Direction.NONE, tag, ItemType.SPIDER)
-        self.time_created: float = time.time()
-        self.seconds_alive: float = seconds_alive
+        self.time_created: float = TickHandler.instance.ticks
+        self.ticks_alive: float = ticks_alive
 
     def update(self, game: Game, items: Iterable[Item]):
-        current_time = time.time()
-        if self.time_created + self.seconds_alive < current_time:
+
+        current_tick = TickHandler.instance.ticks
+        if self.time_created + self.ticks_alive < current_tick:
             game.remove(self)
 
     def draw(self, ui: UI):

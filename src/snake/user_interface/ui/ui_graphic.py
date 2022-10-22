@@ -56,4 +56,4 @@ class Graphical(UI):
 
     def refresh(self):
         sleep(0.2)
-        self._tick.increase()
+        self._tick.update()
