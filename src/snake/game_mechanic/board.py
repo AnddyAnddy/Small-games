@@ -39,7 +39,8 @@ class Board:
             item.update(game, self.items)
 
     def draw(self, ui):
-        for item in self.items:
+        _items = self.items.copy()
+        for item in _items:
             item.draw(ui)
 
     def add(self, item: Item):
