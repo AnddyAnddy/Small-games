@@ -1,4 +1,4 @@
-from src.snake.game_mechanic.TickHandler import TickHandler
+from src.snake.game_mechanic.tick_handler import TickHandler
 from src.snake.game_mechanic.items.abc_item import Item
 
 
