@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from src.snake.game_mechanic.TickHandler import TickHandler
+from src.snake.game_mechanic.tick_handler import TickHandler
 from src.snake.user_interface.drawers.drawers import Drawers
 
 if TYPE_CHECKING:
